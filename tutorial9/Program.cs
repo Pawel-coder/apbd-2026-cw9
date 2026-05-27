@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using tutorial9.Data;
+using tutorial9.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ builder.Services.AddDbContext<HospitaldBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddScoped<IDbService, DbService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
